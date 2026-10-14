@@ -87,6 +87,7 @@
 - 辰宝的形象、场景和动画：由家人设计并确认。
 - 语音由 Matcha TTS 和 Piper 生成。
 
-## 许可
+## LICENSE
 
-本项目仅供家庭使用。如果要分享或改编，请先联系作者。
+* This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/) - [![License: CC BY 4.0](https://licensebuttons.net/l/by/4.0/80x15.png)](https://creativecommons.org/licenses/by/4.0/)
+
