@@ -1,6 +1,6 @@
-# 辰宝拉粑粑 · Into käy vessassa
+# 辰宝学上厕所 · Into käy vessassa
 
-一个给 2.5 岁小朋友的互动小游戏，帮助孩子了解如厕的过程：想上厕所、脱裤子、坐上马桶、冲水、洗手、穿好裤子。整个过程只需要**点一点**，不需要识字，不用拖动，也没有对错、没有输赢和倒计时。
+一个给 2.5 岁小朋友的互动小游戏，帮助孩子了解如厕的过程：想上厕所、脱裤子、坐上马桶、擦屁股、冲水、穿好裤子、洗手。整个过程只需要**点一点**，不需要识字，不用拖动，也没有对错、没有输赢和倒计时。
 
 **Demo：** 打开 `index.html`，或者在支持 GitHub Pages 的仓库里访问已发布的网址。
 
@@ -15,15 +15,18 @@
 | 3 | 去马桶啦！ | Mennään vessaan! |
 | 4 | 坐上马桶，嗯—— | Istutaan pöntölle, hmm… |
 | 5 | 扑通！拉粑粑啦！ | Plumps! Kakka tuli! |
-| 6 | 冲水！粑粑拜拜！ | Huuhdellaan! Hei hei, kakka! |
-| 7 | 穿好裤子。 | Housut ylös. |
-| 8 | 洗洗手，搓泡泡。 | Pestään kädet saippualla. |
-| 9 | 辰宝真棒！ | Hienoa, Into! |
+| 6 | 擦擦屁股。 | Pyyhitään pylly. |
+| 7 | 冲水！粑粑拜拜！ | Huuhdellaan! Hei hei, kakka! |
+| 8 | 穿好裤子。 | Housut ylös. |
+| 9 | 洗洗手，搓泡泡。 | Pestään kädet saippualla. |
+| 10 | 辰宝真棒！ | Hienoa, Into! |
 | 彩蛋 | 小狗、小猫、大象轮流来上厕所 | Koira, kissa, norsu |
 
 每个画面都有一个发光、带黄色虚线圈的东西，提示宝宝去点。点了就会有动画和声音，随后自动进入下一步。
 
 **拉粑粑 / 尿尿**：开始页可以选择"拉粑粑"或"尿尿"，尿尿的流程里粑粑换成了一颗黄色的小水滴。
+
+**擦擦屁股**：点墙上的卷纸，白色纸巾会软软地拉出来，飘到辰宝手里，擦两三下，再轻轻飘进马桶。下一步冲水时，纸巾跟着一起冲走。两个流程都有这一步。
 
 ---
 
@@ -70,6 +73,11 @@
 - 图形全部是 SVG 矢量绘制，在任何分辨率下都清晰。
 - 中文语音由 Matcha TTS 生成，并用语音识别检查过每一句的内容。
 - 芬兰语语音由 Piper 模型（harri-medium）生成。
+
+**新增句子时怎么配出一样的声音**（2026 年 10 月"擦擦屁股"这一步就是这样做的）：
+- 中文：按 `CHINESE_VOICE_GENERATION.md`（在本地 `02-into-game` 文件夹里，不在这个仓库）的做法，Matcha `matcha-icefall-zh-baker` + Vocos，语速 0.9。"擦擦"要在词典里加 `擦擦 ca1 ca`（第二个字轻声），不然会被读成"擦哈"。
+- 芬兰语：**不是** `FINNISH_VOICE_GENERATION.md`（同一个本地文件夹）里的 edge-tts（那是"辰宝的一天"用的，声音更高）。这个游戏用的是 sherpa-onnx 的 `vits-piper-fi_FI-harri-medium`，语速 0.9。裁静音和归一化的方式和中文一样，再用 ffmpeg 转成 24 kHz 单声道 48 kbps MP3。
+- 在 Mac 上直接用 `pip install piper-tts` 会因为找不到发音数据而报错，所以改用 sherpa-onnx 打包好的版本。
 - 没有使用任何外部图片、角色或版权素材；所有角色都是原创。
 - 声音使用 `<audio>` 播放，无法播放时会切换到 Web Audio，最后才使用设备自带语音。
 
